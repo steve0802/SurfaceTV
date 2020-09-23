@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app.statusbar.background">#0080CC</color>
+    <color name="app.actionbar.text">#000000</color>
+    <color name="app.actionbar.background">#FFFFFF</color>
+
+    <color name="app.launcher.background">#0099cc</color>
+    <color name="app.launcher.appname">#FFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>
