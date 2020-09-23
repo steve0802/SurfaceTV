@@ -24,17 +24,12 @@ import com.steve.surfacetv.datasource.vo.DramaVo;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends FragmentActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
+    private SearchView searchView;
 
     private DramaListAdapter adapterDramaList;
     private List<DramaVo> dramaVoListForDisplay;
@@ -85,7 +80,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initSearchView() {
-        final SearchView searchView = findViewById(R.id.main_search);
+        searchView = findViewById(R.id.main_search);
         final ImageView imageSearchViewClose = searchView.findViewById(R.id.search_close_btn);
         final TextView textViewTitle = findViewById(R.id.main_subtitle);
 
@@ -149,7 +144,6 @@ public class MainActivity extends FragmentActivity {
         this.dramaVoListForDisplay.clear();
         this.dramaVoListForDisplay.addAll(this.dramaVoListForSearch);
         this.adapterDramaList.notifyDataSetChanged();
-
     }
 
     private void showDramaListForInit() {
@@ -240,6 +234,8 @@ public class MainActivity extends FragmentActivity {
         String prevSearchInput = SharedPreferenceUtil.getInstance().getSearchInput();
         if (!prevSearchInput.isEmpty()) {
             search(prevSearchInput);
+            this.searchView.onActionViewExpanded();
+            this.searchView.setQuery(prevSearchInput, false);
             return;
         }
 
